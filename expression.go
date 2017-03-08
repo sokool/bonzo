@@ -2,7 +2,13 @@ package bonzo
 
 import "time"
 
-func WeekDay(ws ...time.Weekday) Expression {
+func Eachtime(from time.Time, d time.Duration) Expression {
+	return ExpressionFunc(func(t time.Time) bool {
+		return (t.Equal(from) || t.After(from)) && t.Sub(from)%d == 0
+	})
+}
+
+func Weekday(ws ...time.Weekday) Expression {
 	return ExpressionFunc(func(t time.Time) bool {
 		for _, w := range ws {
 			if t.Weekday() == w {
@@ -13,7 +19,7 @@ func WeekDay(ws ...time.Weekday) Expression {
 	})
 }
 
-func TimeRange(b, e time.Time) Expression {
+func Range(b, e time.Time) Expression {
 	return ExpressionFunc(func(t time.Time) bool {
 		return t.After(b) && t.Before(e)
 	})
