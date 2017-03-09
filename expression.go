@@ -2,9 +2,9 @@ package bonzo
 
 import "time"
 
-func Eachtime(from time.Time, d time.Duration) Expression {
+func Every(b time.Time, d time.Duration) Expression {
 	return ExpressionFunc(func(t time.Time) bool {
-		return (t.Equal(from) || t.After(from)) && t.Sub(from)%d == 0
+		return (t.Equal(b) || t.After(b)) && t.Sub(b)%d == 0
 	})
 }
 
