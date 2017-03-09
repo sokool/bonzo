@@ -21,7 +21,11 @@ func Weekday(ws ...time.Weekday) Expression {
 
 func Range(b, e time.Time) Expression {
 	return ExpressionFunc(func(t time.Time) bool {
-		return t.After(b) && t.Before(e)
+		if e.IsZero() && (t.After(b) || t.Equal(b)) {
+			return true
+		}
+
+		return (t.After(b) || t.Equal(b)) && t.Before(e)
 	})
 }
 
