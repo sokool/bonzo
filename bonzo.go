@@ -21,6 +21,13 @@ func (f ExpressionFunc) Express(t time.Time) bool {
 	return f(t)
 }
 
+func (s *Schedule) Add(v interface{}, t string) {
+	s.events = append(s.events, Event{
+		Expression: ParseFake(t),
+		Value:      v,
+	})
+}
+
 func (s *Schedule) Occur(t time.Time) []interface{} {
 	var vs []interface{}
 	for _, e := range s.events {

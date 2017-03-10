@@ -10,7 +10,7 @@ const everyWeek = "every week at"
 func ParseFake(s string) Expression {
 	e, err := parseEveryWeek(s)
 	if err != nil {
-		fmt.Println(err)
+		panic(err.Error())
 	}
 	return e
 }
@@ -18,7 +18,7 @@ func ParseFake(s string) Expression {
 func parseEveryWeek(s string) (Expression, error) {
 	i := strings.Index(s, everyWeek)
 	if i == -1 {
-		return nil, fmt.Errorf("niomo")
+		return nil, fmt.Errorf("no weekdays")
 
 	}
 
@@ -26,7 +26,7 @@ func parseEveryWeek(s string) (Expression, error) {
 
 	w, ok := weekdays[ws]
 	if !ok {
-		return nil, fmt.Errorf("chujnia")
+		return nil, fmt.Errorf("weekday not found")
 
 	}
 
