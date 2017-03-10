@@ -16,6 +16,7 @@ type rangeTest struct {
 }
 
 var n string = "2017-03-21"
+
 var rangeTests = []rangeTest{
 	{n, "2017-03-01", "2017-03-31", true},
 	{n, "2017-03-20", "2017-03-22", true},

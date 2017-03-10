@@ -50,3 +50,9 @@ func Union(es ...Expression) Expression {
 		return false
 	})
 }
+
+func Differene(es ...Expression) Expression {
+	return ExpressionFunc(func(t time.Time) bool {
+		return false
+	})
+}
